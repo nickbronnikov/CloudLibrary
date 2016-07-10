@@ -15,7 +15,7 @@ $inf[2]='martian';
 $res = $mysqli->query ("SELECT * FROM `users` WHERE `test`='1'");
 $mysqli->close();
 echo $_SESSION['logged_user']."<br><h2>Круто, ты авторизировался!</h2>";
-
+echo "<h1>Hello world!</h1>"
 ?>
 <p>Hello world!!!!!!!!</p>
 <a class="waves-effect waves-light btn" href="/logout.php">Выйти</a>
