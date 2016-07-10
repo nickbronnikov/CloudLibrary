@@ -1,11 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nik3b
- * Date: 07.07.2016
- * Time: 0:38
- */
+require "includes/db.php";
+function checkLogin2($login){
+    $mysqli= new mysqli("localhost","mysql","mysql","Library");
+    $mysqli->query("SET NAMES 'utf8'");
+    $res = $mysqli->query ("SELECT * FROM `users` WHERE `login`='$login'");
+    $mysqli->close();
+    if ($res->num_rows) return true; else return false;
+}
+$mysqli= new mysqli("localhost","mysql","mysql","Library");
+$mysqli->query("SET NAMES 'utf8'");
+$inf=array();
+$inf[1]='mark.watney';
+$inf[2]='martian';
+$res = $mysqli->query ("SELECT * FROM `users` WHERE `test`='1'");
+$mysqli->close();
+echo $_SESSION['logged_user']."<br><h2>Круто, ты авторизировался!</h2>";
+
 ?>
+<p>Hello world!!!!!!!!</p>
+<a class="waves-effect waves-light btn" href="/logout.php">Выйти</a>
 <!DOCTYPE html>
 <html
     lang="en">
@@ -17,10 +30,4 @@
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <script type="text/javascript" src="js/test.js"></script>
-    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="js/materialize.js"></script>
 </head>
-<body>
-<div id="test" onclick="start()"><h1>Проверка</h1></div>
-</body>
