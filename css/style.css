@@ -1,0 +1,28 @@
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.logo{
+    padding: 10px;
+}
+.info{
+    background-image: url(http://www.pressdesk.es/wp-content/uploads/2016/05/magazine-806073_1920.jpg);
+}
+.maincolor{
+    color: #00A89B !important;
+}
+.elcolor{
+    color: white;
+}
+.error{
+    padding-left: 40px;
+    color: red;
+}
+.error_div{
+    padding-top: 20px;
+}
+.login{
+    margin-left: 150px;
+}
