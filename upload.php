@@ -1,7 +1,8 @@
 <?php
+require "includes/filechange.php";
 if(isset($_POST['upload'])){
     //Список разрешенных файлов
-    $whitelist = array(".fb2", ".jpeg", ".png");
+    $whitelist = array(".fb2", ".jpeg", ".pdf");
     $data = array();
     $error = true;
 
@@ -13,10 +14,9 @@ if(isset($_POST['upload'])){
     //если нет ошибок, грузим файл
     if(!$error) {
 
-        $folder =  'users_files/';//директория в которую будет загружен файл
-
-        $uploadedFile =  $folder.basename($_FILES['userfile']['name']);
-
+        $folder =  'users_files/';//директория в которую будет загружен файлy
+        $uploadedFile =  rus2translit($folder.basename($_FILES['userfile']['name']));
+        
         if(is_uploaded_file($_FILES['userfile']['tmp_name'])){
 
             if(move_uploaded_file($_FILES['userfile']['tmp_name'],$uploadedFile)){

@@ -1,6 +1,7 @@
 function hideBtn(){
     $('#upload').hide();
     $('#res').html("Идет загрузка файла");
+    $('#progress_load').css('width','30%');
 }
 
 function handleResponse(mes) {
