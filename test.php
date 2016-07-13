@@ -1,33 +1,27 @@
 <?php
-require "includes/db.php";
-function checkLogin2($login){
-    $mysqli= new mysqli("localhost","mysql","mysql","Library");
-    $mysqli->query("SET NAMES 'utf8'");
-    $res = $mysqli->query ("SELECT * FROM `users` WHERE `login`='$login'");
-    $mysqli->close();
-    if ($res->num_rows) return true; else return false;
+$a=array("NASA","Roscosmos");
+//ab($a);
+function ab($a){
+    foreach ($a as $b){
+        echo $b."<br>";
+    }
 }
-$mysqli= new mysqli("localhost","mysql","mysql","Library");
-$mysqli->query("SET NAMES 'utf8'");
-$inf=array();
-$inf[1]='mark.watney';
-$inf[2]='martian';
-$res = $mysqli->query ("SELECT * FROM `users` WHERE `test`='1'");
-$mysqli->close();
-echo $_SESSION['logged_user']."<br><h2>Круто, ты авторизировался!</h2>";
-echo "<h1>Hello world!</h1>"
-?>
-<p>Hello world!!!!!!!!</p>
-<a class="waves-effect waves-light btn" href="/logout.php">Выйти</a>
-<!DOCTYPE html>
-<html
-    lang="en">
+//?>
+<!doctype html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>Облачная библиотека</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <title>Ajax загрузка файлов</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/test.js"></script>
 </head>
+<body>
+<form action="upload.php" method="post" target="hiddenframe" enctype="multipart/form-data" onsubmit="hideBtn();">
+    <input type="file" id="userfile" name="userfile" />
+    <input type="submit" name="upload" id="upload" value="Загрузить" />
+</form>
+<div id="res"></div>
+<iframe id="hiddenframe" name="hiddenframe" style="width:0px; height:0px; border:0px"></iframe>
+</form>
+</body>
+</html>
