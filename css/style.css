@@ -26,3 +26,6 @@
 .login{
     margin-left: 150px;
 }
+#progress{
+    visibility: hidden;
+}

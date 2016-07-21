@@ -1,5 +1,6 @@
 function hideBtn(){
-    $('#upload').hide();
+    //$('#upload').hide();
+    $('#progress').css("");
     $('#res').html("Идет загрузка файла");
     $('#progress_load').css('width','30%');
 }
@@ -12,4 +13,7 @@ function handleResponse(mes) {
     else {
         $('#res').html("Файл " + mes.name + " загружен");
     }
+}
+function endDownload() {
+    alert("Готово");
 }

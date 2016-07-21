@@ -56,9 +56,13 @@
             $table_name='users';
             $fields=array('login', 'email', 'password', 'join_date');
             $data=array($login, $email, $password,$time);
-            $success=B::insert($table_name,$fields,$data);
+            print_r($data);
+            $success=B::inBase($table_name,$fields,$data);
             unset($_SESSION);
-            if ($success) echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=success.php">';
+            echo "<br>";
+            print_r($success);
+            if ($success) //echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=success.php">';
+            echo "Успешно";
         }
     }
 

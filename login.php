@@ -30,7 +30,7 @@ if (isset($data['loginin'])) {
     if ($check) {
         echo "<h1>Авторизировался</h1>";
         $_SESSION['logged_user']=$data['login'];
-        echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index2.php">';
+        echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=loginok.php">';
     }
 }
 ?>
@@ -77,4 +77,6 @@ if (isset($data['loginin'])) {
             <button  class="btn waves-effect waves-light login" type="submit" name="loginin"><span class="elcolor">войти</span>
             </button>
         </form>
+        </div>
+    </div>
 </body>

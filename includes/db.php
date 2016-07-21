@@ -27,25 +27,35 @@ class B{
     public $db_password="mysql";
     public $db_host="localhost";
     public $db_name="Library";
-    public static function insert($table_name,$fields,$data){
+    public $db_charset="utf8";
+    static function inBase($table_name,$fields,$values){
         $db=new B();
-        $mysqli= new mysqli($db->db_host,$db->db_login,$db->db_password,$db->db_name);
-        $mysqli->query("SET NAMES 'utf8'");
         $query="INSERT INTO `$db->db_name`.`$table_name` (";
+        $dsn = "mysql:host=$db->db_host;dbname=$db->db_name;charset=$db->db_charset";
+        $opt=array(
+            PDO::ATTR_ERRMODE  =>PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        );
+        $pdo=new PDO($dsn,$db->db_login,$db->db_password,$opt);
+        $sql =$query.B::pdoSet($fields,$values);
+        $stm = $pdo->prepare($sql);
+        $stm->execute($values);
+        $pdo=null;
+        return $values;
+    }
+    function pdoSet($fields, &$values, $source = array()) {
+        $query="";
         for ($i=0;$i<count($fields)-1;$i++){
             $query=$query."`$fields[$i]`".", ";
         }
         $last=count($fields)-1;
         $query=$query."`$fields[$last]`".") VALUES (";
-        for ($i=0;$i<count($data)-1;$i++){
-            $query=$query."'$data[$i]'".", ";
+        for ($i=0;$i<count($values)-1;$i++){
+            $query=$query."?".", ";
         }
-        $last=count($data)-1;
-        $query=$query."'$data[$last]'".")";
-        $success = $mysqli->query ($query);
-        $mysqli->close();
-        return $success;
+        $last=count($values)-1;
+        $query=$query."?".")";
+        return $query;
     }
 }
-session_start();
 ?>

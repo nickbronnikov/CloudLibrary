@@ -1,5 +1,6 @@
 <?php
 require "includes/filechange.php";
+
 if(isset($_POST['upload'])){
     //Список разрешенных файлов
     $whitelist = array(".fb2", ".jpeg", ".pdf");
@@ -22,6 +23,7 @@ if(isset($_POST['upload'])){
             if(move_uploaded_file($_FILES['userfile']['tmp_name'],$uploadedFile)){
 
                 $data = $_FILES['userfile'];
+                echo "<script>window.parent.endDownload();</script>";
             }
             else {
                 $data['errors'] = "Во время загрузки файла произошла ошибка";
@@ -35,7 +37,6 @@ if(isset($_POST['upload'])){
 
         $data['errors'] = 'Вы загружаете запрещенный тип файла';
     }
-
 
     //Формируем js-файл    
     $res = '<script type="text/javascript">';
