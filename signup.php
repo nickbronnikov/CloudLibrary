@@ -1,6 +1,6 @@
 <?php
-    session_start();
     require "includes/db.php";
+    require "includes/filechange.php";
     $data=$_POST;
     if(isset($data["signup"])){
         $login=htmlspecialchars(trim($_POST["login"]));
@@ -23,7 +23,7 @@
         } else{
             if (checklogin(trim($data['login']))){
                 $checkerrors=false;
-                $errors['login']="Такой логин уже существует";
+                $errors['login']="Пользователь с таким логином уже зарегестрирован";
             }
         }
         if (trim($data['email'])==''){
@@ -32,7 +32,7 @@
         } else{
             if (checkMail(trim($data['email']))){
                 $checkerrors=false;
-                $errors['email']="Пользователь с таким e-mail уже   зарегестрирован";
+                $errors['email']="Пользователь с таким e-mail уже зарегестрирован";
             }
         }
         if ($data['password']=='')
@@ -56,13 +56,12 @@
             $table_name='users';
             $fields=array('login', 'email', 'password', 'join_date');
             $data=array($login, $email, $password,$time);
-            print_r($data);
             $success=B::inBase($table_name,$fields,$data);
             unset($_SESSION);
-            echo "<br>";
-            print_r($success);
-            if ($success) //echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=success.php">';
-            echo "Успешно";
+            if ($success) {
+                mkdir("users_files/".rus2translit($login),0777);
+                echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=success.php">';
+            }
         }
     }
 

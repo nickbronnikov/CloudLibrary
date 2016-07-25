@@ -28,9 +28,8 @@ if (isset($data['loginin'])) {
     }
     $inf=array();
     if ($check) {
-        echo "<h1>Авторизировался</h1>";
         $_SESSION['logged_user']=$data['login'];
-        echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=loginok.php">';
+        echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
     }
 }
 ?>

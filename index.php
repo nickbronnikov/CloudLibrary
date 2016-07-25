@@ -1,23 +1,34 @@
+<?php
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Облачная библиотека</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/script.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<nav class="white lighten-1" role="navigation">
-    <div class="nav-wrapper container "><div><a id="logo-container" href="index.php" class="brand-logo logo"><img class="logo" src="img/Logo_m.png"></a>
-        <ul class="right">
-            <li><a class="waves-effect waves-light btn" href="login.php">Войти</a></li>
+<nav class="white lighten-2">
+    <div class="nav-wrapper container">
+        <a href="#!" class="brand-logo"><img class="logo" src="img/Logo_m.png"></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons maincolor">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="btn waves-light waves-effect" href="login.php">Войти</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo" href="download.php">
+            <li><a href="login.php">Войти</a></li>
         </ul>
     </div>
 </nav>
+
 <div class="section no-pad-bot info" id="index-banner">
     <div class="container">
         <br><br>
@@ -70,3 +81,4 @@
     </div>
 </div>
 </body>
+</html>

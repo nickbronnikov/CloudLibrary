@@ -1,6 +1,6 @@
 <?php
 require "includes/filechange.php";
-
+require "includes/db.php";
 if(isset($_POST['upload'])){
     //Список разрешенных файлов
     $whitelist = array(".fb2", ".jpeg", ".pdf");

@@ -1,4 +1,5 @@
 <?php
+session_start();
 function checkLogin($login){
     $mysqli= new mysqli("localhost","mysql","mysql","Library");
     $mysqli->query("SET NAMES 'utf8'");
@@ -42,6 +43,38 @@ class B{
         $stm->execute($values);
         $pdo=null;
         return $values;
+    }
+    static function selectFromBase($table_name,$fields,$conditions,$key){
+        $db=new B();
+        $dsn = "mysql:host=$db->db_host;dbname=$db->db_name;charset=$db->db_charset";
+        $opt=array(
+            PDO::ATTR_ERRMODE  =>PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        );
+        $pdo=new PDO($dsn,$db->db_login,$db->db_password,$opt);
+        if ($fields==null){
+            $query="SELECT * FROM `$db->db_name`.`$table_name`";
+        } else {
+            $query="SELECT ";
+            for ($i=0;$i<count($fields)-1;$i++){
+                $query=$query."$fields[$i]".", ";
+            }
+            $last=count($fields)-1;
+            $query=$query."$fields[$last]"." FROM `$db->db_name`.`$table_name`";
+        }
+        if ($conditions!=null){
+            $query .=" WHERE ";
+            for ($i=0;$i<count($conditions)-1;$i++){
+                $query=$query."$conditions[$i]"." = ?, ";
+            }
+            $last=count($conditions)-1;
+            $query=$query."$conditions[$last]"." = ?";
+        }
+        $stmt = $pdo->prepare($query);
+        $stmt->execute($key);
+        return $stmt;
+
+        $pdo=null;
     }
     function pdoSet($fields, &$values, $source = array()) {
         $query="";
